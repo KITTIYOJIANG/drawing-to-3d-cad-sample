@@ -265,7 +265,11 @@ const navIds = ['process','case-study','demo','deliverables','pilot'];
             <label>{isZh ? '项目名称（必填）' : 'Project name (required)'}<input name="projectName" required /></label>
             <div class="form-row"><label>{isZh ? '图纸格式与页数' : 'Drawing format and pages'}<input name="drawing" placeholder="PDF / DXF" /></label><label>{isZh ? '零件数量' : 'Part count'}<input name="partCount" type="number" min="1" inputmode="numeric" /></label></div>
             <label>{isZh ? '零件用途' : 'Intended use'}<input name="intendedUse" /></label>
-            <label>{isZh ? '需要的文件格式' : 'Required file formats'}<select name="formats" multiple size="3" aria-label={isZh ? '选择需要的文件格式' : 'Select required file formats'}><option value="STEP">STEP</option><option value="STL">STL</option><option value={isZh ? '工程图' : '2D drawing'}>{isZh ? '工程图' : '2D drawing'}</option></select></label>
+            <fieldset class="format-fieldset"><legend>{isZh ? '需要的文件格式（可多选）' : 'Required file formats (select all that apply)'}</legend><div class="format-options">
+              <label class="format-option"><input type="checkbox" name="formats" value="STEP" /><span>STEP</span><small>{isZh ? '可编辑 CAD 实体' : 'Solid CAD model'}</small></label>
+              <label class="format-option"><input type="checkbox" name="formats" value="STL" /><span>STL</span><small>{isZh ? '网格预览 / 打印' : 'Mesh preview / print'}</small></label>
+              <label class="format-option"><input type="checkbox" name="formats" value={isZh ? '工程图' : '2D drawing'} /><span>{isZh ? '工程图' : '2D drawing'}</span><small>{isZh ? 'PDF / DXF 整理' : 'PDF / DXF cleanup'}</small></label>
+            </div></fieldset>
             <label>{isZh ? '已知缺失尺寸或公差' : 'Known missing dimensions or tolerances'}<textarea name="openQuestions" rows="3"></textarea></label>
             <label>{isZh ? '期望完成时间' : 'Desired deadline'}<input name="deadline" /></label>
             <button class="button button-primary send-button" type="submit">{isZh ? '发送询价' : 'Send inquiry'} <span aria-hidden="true">→</span></button>

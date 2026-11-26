@@ -1,5 +1,7 @@
 # build output
 dist/
+.openai/
+.vscode/
 # generated types
 .astro/
 .idea/
