@@ -1,0 +1,17 @@
+{
+  "name": "drawing-to-cad-studio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@astrojs/sitemap": "^3.7.6",
+    "astro": "^7.4.13",
+    "typescript": "^6.0.3"
+  }
+}
