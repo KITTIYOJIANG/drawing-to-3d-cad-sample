@@ -52,7 +52,7 @@ const t = {
     priceEyebrow: 'PILOT PROJECT', priceTitle: '从一件小项目开始',
     priceBody: '适用于一套最多 2 个简单机械零件、尺寸明确的 PDF / DXF。关键问题确认后，目标交付时间为 3 个工作日，含一次小修订。',
     priceZh: '¥1,299', priceEn: 'US$199', priceNote: '试单固定价 · 超出范围另行确认',
-    briefTitle: '准备试单信息', briefBody: '复制下面的清单，填好后连同图纸通过你习惯的渠道发送。网站当前不接收或存储客户图纸。',
+    briefTitle: '填写试单信息', briefBody: '填写项目需求和联系邮箱，点击发送后会打开邮件草稿。图纸请在邮件中添加附件；网站不会接收或保存图纸。',
     copy: '复制询价清单', copied: '已复制询价清单', copyFail: '复制失败，请手动选择文本',
     brief: '项目名称：\n图纸格式与页数：\n零件数量：\n零件用途：\n需要的文件格式（STEP / STL / 工程图）：\n已知缺失尺寸或公差：\n期望完成时间：',
     faqTitle: '常见问题',
@@ -108,7 +108,7 @@ const t = {
     priceEyebrow: 'PILOT PROJECT', priceTitle: 'Start with one small project',
     priceBody: 'One clearly dimensioned PDF / DXF covering up to two simple mechanical parts. Target delivery is three business days after key questions are settled, with one minor revision.',
     priceZh: '¥1,299', priceEn: 'US$199', priceNote: 'Fixed pilot offer · expanded scope quoted separately',
-    briefTitle: 'Prepare a project brief', briefBody: 'Copy the checklist, fill it in and send it with your drawing through your preferred channel. This site does not receive or store client drawings.',
+    briefTitle: 'Send a project inquiry', briefBody: 'Fill in the project details and contact email, then send. Add your drawing as an attachment in the email draft. This site does not receive or store drawings.',
     copy: 'Copy inquiry checklist', copied: 'Checklist copied', copyFail: 'Copy failed; please select the text manually',
     brief: 'Project name:\nDrawing format and page count:\nPart count:\nIntended use:\nNeeded files (STEP / STL / drawing):\nKnown missing dimensions or tolerances:\nDesired deadline:',
     faqTitle: 'Frequently asked questions',
@@ -243,7 +243,19 @@ const navIds = ['process','case-study','demo','deliverables','pilot'];
 
       <section class="section shell pilot-section" id="pilot" aria-labelledby="pilot-title">
         <div class="pilot-card"><span class="section-kicker">{t.priceEyebrow}</span><h2 id="pilot-title">{t.priceTitle}</h2><p>{t.priceBody}</p><div class="prices"><div><span>{isZh ? '国内试单' : 'China pilot'}</span><strong>{t.priceZh}</strong></div><div><span>{isZh ? '海外试单' : 'International pilot'}</span><strong>{t.priceEn}</strong></div></div><small>{t.priceNote}</small></div>
-        <div class="brief-card"><h3>{t.briefTitle}</h3><p>{t.briefBody}</p><pre id="inquiry-brief">{t.brief}</pre><button class="button button-primary copy-button" type="button" data-copy-brief data-label={t.copy} data-success={t.copied} data-fail={t.copyFail}>{t.copy}</button><p class="copy-status" role="status" aria-live="polite"></p></div>
+        <div class="brief-card"><h3>{t.briefTitle}</h3><p>{t.briefBody}</p>
+          <form class="inquiry-form" data-inquiry-form data-recipient="zexuanzjb@gmail.com" novalidate>
+            <label>{isZh ? '联系邮箱（必填）' : 'Contact email (required)'}<input type="email" name="contactEmail" autocomplete="email" placeholder={isZh ? 'name@example.com' : 'name@example.com'} required /></label>
+            <label>{isZh ? '项目名称（必填）' : 'Project name (required)'}<input name="projectName" required /></label>
+            <div class="form-row"><label>{isZh ? '图纸格式与页数' : 'Drawing format and pages'}<input name="drawing" placeholder="PDF / DXF" /></label><label>{isZh ? '零件数量' : 'Part count'}<input name="partCount" type="number" min="1" inputmode="numeric" /></label></div>
+            <label>{isZh ? '零件用途' : 'Intended use'}<input name="intendedUse" /></label>
+            <label>{isZh ? '需要的文件格式' : 'Required file formats'}<select name="formats" multiple size="3" aria-label={isZh ? '选择需要的文件格式' : 'Select required file formats'}><option value="STEP">STEP</option><option value="STL">STL</option><option value={isZh ? '工程图' : '2D drawing'}>{isZh ? '工程图' : '2D drawing'}</option></select></label>
+            <label>{isZh ? '已知缺失尺寸或公差' : 'Known missing dimensions or tolerances'}<textarea name="openQuestions" rows="3"></textarea></label>
+            <label>{isZh ? '期望完成时间' : 'Desired deadline'}<input name="deadline" /></label>
+            <button class="button button-primary send-button" type="submit">{isZh ? '发送询价' : 'Send inquiry'} <span aria-hidden="true">→</span></button>
+            <p class="copy-status" data-form-status role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </section>
 
       <section class="section shell faq-section" aria-labelledby="faq-title"><h2 id="faq-title">{t.faqTitle}</h2><div class="faq-list">{t.faqs.map(([q,a]) => <details><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></section>
@@ -267,17 +279,26 @@ const navIds = ['process','case-study','demo','deliverables','pilot'];
         const range = stage.querySelector<HTMLInputElement>('.compare-range');
         range?.addEventListener('input', () => stage.style.setProperty('--split', `${range.value}%`));
       });
-      const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-brief]');
-      copyButton?.addEventListener('click', async () => {
-        const text = document.querySelector<HTMLElement>('#inquiry-brief')?.textContent ?? '';
-        const status = document.querySelector<HTMLElement>('.copy-status');
-        try {
-          await navigator.clipboard.writeText(text);
-          copyButton.textContent = copyButton.dataset.success ?? 'Copied';
-          if (status) status.textContent = copyButton.dataset.success ?? 'Copied';
-        } catch {
-          if (status) status.textContent = copyButton.dataset.fail ?? 'Copy failed';
+      const inquiryForm = document.querySelector<HTMLFormElement>('[data-inquiry-form]');
+      inquiryForm?.addEventListener('submit', event => {
+        event.preventDefault();
+        const status = inquiryForm.querySelector<HTMLElement>('[data-form-status]');
+        if (!inquiryForm.reportValidity()) return;
+        const recipient = inquiryForm.dataset.recipient?.trim();
+        if (!recipient) {
+          if (status) status.textContent = document.documentElement.lang.startsWith('zh') ? '收件邮箱尚未配置，请稍后再试。' : 'The receiving email is not configured yet. Please try again later.';
+          return;
         }
+        const data = new FormData(inquiryForm);
+        const formats = data.getAll('formats').join(', ') || 'Not specified';
+        const lines = [
+          `Contact email: ${data.get('contactEmail')}`, `Project: ${data.get('projectName')}`,
+          `Drawing: ${data.get('drawing') || 'Not specified'}`, `Part count: ${data.get('partCount') || 'Not specified'}`,
+          `Intended use: ${data.get('intendedUse') || 'Not specified'}`, `Required formats: ${formats}`,
+          `Open dimensions / tolerances: ${data.get('openQuestions') || 'Not specified'}`, `Desired deadline: ${data.get('deadline') || 'Not specified'}`
+        ];
+        const subject = `CAD inquiry — ${data.get('projectName')}`;
+        window.location.href = `mailto:${encodeURIComponent(recipient)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
       });
     </script>
   </body>
