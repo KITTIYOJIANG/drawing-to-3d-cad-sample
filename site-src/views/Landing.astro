@@ -20,9 +20,9 @@ const t = {
     processEyebrow: 'HOW IT WORKS', processTitle: '三步完成可审查的交付',
     processLead: '每一步都说明输入、需要确认的事项和最终文件。',
     steps: [
-      ['01','提交图纸','提供 PDF / DXF、用途与目标格式。我们先检查图纸是否足以建模。'],
-      ['02','核对并建模','列出缺失、矛盾与公差疑点；确认后建立三维实体并检查尺寸。'],
-      ['03','检查交付','交付 STEP、STL、三视图和关键尺寸对照记录，供客户复核。'],
+      ['01','提交图纸','先做适建性检查，再确认工作范围与报价。','尺寸清晰的 PDF / DXF、零件用途、目标格式','确认范围与待答问题'],
+      ['02','逐项澄清，再建模','发现缺失或冲突时先暂停相关特征，记录问题并等你确认。','缺失尺寸、视图冲突、适用的假设与公差要求','按确认版尺寸建立 CAD 实体'],
+      ['03','核对后交付','核对关键尺寸与导出文件；说明检查覆盖范围及未验证事项。','模型、尺寸对照表和交付文件','STEP / STL、三视图与检查记录'],
     ],
     compareEyebrow: '2D ↔ 3D', compareTitle: '同一件样品，从图纸到模型',
     compareLead: '拖动分隔线查看视觉对比。图纸与模型的尺寸关系请以下方核对表为准。',
@@ -76,9 +76,9 @@ const t = {
     processEyebrow: 'HOW IT WORKS', processTitle: 'Three steps to a reviewable handoff',
     processLead: 'Each step makes the input, open questions and final files clear.',
     steps: [
-      ['01','Submit the drawing','Provide PDF / DXF, intended use and output format. We check whether the drawing is ready to model.'],
-      ['02','Clarify and model','We list missing or conflicting dimensions, confirm them, then build and check the solid.'],
-      ['03','Review the handoff','Receive STEP, STL, three-view previews and a key-dimension comparison for your review.'],
+      ['01','Send the drawing','We check suitability, then agree the scope and quote.','Clear PDF / DXF, part use and target formats','Agreed scope and open questions'],
+      ['02','Resolve questions, then model','If dimensions are missing or conflict, we flag them before modeling affected features.','Missing values, view conflicts, assumptions and tolerance needs','CAD built to the confirmed dimensions'],
+      ['03','Check and hand off','We check key dimensions and exports, and state what was and was not verified.','Model, dimension record and delivery files','STEP / STL, three views and check record'],
     ],
     compareEyebrow: '2D ↔ 3D', compareTitle: 'One sample, from drawing to model',
     compareLead: 'Drag the divider for a visual comparison. Use the check table below for dimension traceability.',
@@ -191,7 +191,7 @@ const navIds = ['process','case-study','demo','deliverables','pilot'];
           <p>{t.processLead}</p>
         </div>
         <div class="steps-grid">
-          {t.steps.map(([number,title,body]) => <article class="step-card"><span class="step-number">{number}</span><h3>{title}</h3><p>{body}</p></article>)}
+          {t.steps.map(([number,title,body,customer,result]) => <article class="step-card"><span class="step-number">{number}</span><h3>{title}</h3><p>{body}</p><div class="step-detail"><strong>{isZh ? '客户参与' : 'Your input'}</strong><span>{customer}</span></div><div class="step-detail step-result"><strong>{isZh ? '阶段结果' : 'Milestone'}</strong><span>{result}</span></div></article>)}
         </div>
       </section>
 
