@@ -28,6 +28,8 @@ const t = {
     compareLead: '拖动分隔线查看视觉对比。图纸与模型的尺寸关系请以下方核对表为准。',
     before: '原始二维图纸', after: '三维 CAD 装配', slider: '调整二维图纸与三维模型的可视比例',
     sampleTag: '原创演示样品 · Rev A', downloadDrawing: '下载图纸 PDF', downloadStep: '下载装配 STEP',
+    galleryEyebrow: 'ENGINEERING REVIEW', galleryTitle: '从工程图到多视角复核', galleryLead: '展示本样品的真实工程图、正视、侧视与等轴测输出。尺寸以图纸标注和检查表为准，渲染图只用于观察形态。',
+    galleryLabels: ['完整工程图','正视图 · X–Z','侧视图 · Y–Z','等轴测装配'],
     checkTitle: '关键尺寸核对', checkLead: '程序检查了原生实体、STEP 回读和 STL 外形；量产公差仍需工程审图。',
     checkCols: ['图纸标注','模型检查','结果'],
     checks: [
@@ -84,6 +86,8 @@ const t = {
     compareLead: 'Drag the divider for a visual comparison. Use the check table below for dimension traceability.',
     before: 'Original 2D drawing', after: '3D CAD assembly', slider: 'Adjust the visible split between drawing and model',
     sampleTag: 'Original demonstrator · Rev A', downloadDrawing: 'Download drawing PDF', downloadStep: 'Download assembly STEP',
+    galleryEyebrow: 'ENGINEERING REVIEW', galleryTitle: 'Drawing to multi-view review', galleryLead: 'See the actual drawing, front, side and isometric outputs for this sample. Dimensions follow the drawing and check table; rendered views show shape only.',
+    galleryLabels: ['Full engineering drawing','Front view · X–Z','Side view · Y–Z','Isometric assembly'],
     checkTitle: 'Key dimension checks', checkLead: 'Native solids, STEP re-import and STL envelopes were checked in code. Production tolerances still need engineering review.',
     checkCols: ['Drawing callout','CAD check','Result'],
     checks: [
@@ -220,6 +224,18 @@ const navIds = ['process','case-study','demo','deliverables','pilot'];
 
           <div class="check-heading"><h3>{t.checkTitle}</h3><p>{t.checkLead}</p></div>
           <div class="check-table-wrap"><table class="check-table"><thead><tr>{t.checkCols.map(label => <th scope="col">{label}</th>)}</tr></thead><tbody>{t.checks.map(([drawing,model,result]) => <tr><td>{drawing}</td><td>{model}</td><td><span class="pass-badge"><span aria-hidden="true">✓</span> {result}</span></td></tr>)}</tbody></table></div>
+        </div>
+      </section>
+
+      <section class="section shell engineering-gallery" aria-labelledby="gallery-title">
+        <div class="section-intro"><span class="section-kicker">{t.galleryEyebrow}</span><h2 id="gallery-title">{t.galleryTitle}</h2><p>{t.galleryLead}</p></div>
+        <div class="gallery-layout">
+          <a class="gallery-drawing" href="/assets/technical-showcase.png" target="_blank" rel="noopener"><img src="/assets/technical-showcase.png" alt={t.galleryLabels[0]} loading="lazy" width="2400" height="1600" /><span>{t.galleryLabels[0]} <b>↗</b></span></a>
+          <div class="gallery-views">
+            <a href="/assets/front.png" target="_blank" rel="noopener"><img src="/assets/front.png" alt={t.galleryLabels[1]} loading="lazy" width="1400" height="1000" /><span>{t.galleryLabels[1]} <b>↗</b></span></a>
+            <a href="/assets/side.png" target="_blank" rel="noopener"><img src="/assets/side.png" alt={t.galleryLabels[2]} loading="lazy" width="1400" height="1000" /><span>{t.galleryLabels[2]} <b>↗</b></span></a>
+            <a href="/assets/isometric.png" target="_blank" rel="noopener"><img src="/assets/isometric.png" alt={t.galleryLabels[3]} loading="lazy" width="1400" height="1000" /><span>{t.galleryLabels[3]} <b>↗</b></span></a>
+          </div>
         </div>
       </section>
 
