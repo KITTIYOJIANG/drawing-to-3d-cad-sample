@@ -39,9 +39,11 @@ npm run dev
 
 Build the static site with `npm run build`. The bilingual site source is in `site-src/`; original demonstrator assets are in `site-public/assets/`.
 
-## Contact
+## Free beta
 
-For a pilot quote, email **zexuanzjb@gmail.com** with the drawing format, part count, intended use, required outputs, known open dimensions/tolerances, and target deadline. Attach drawings only after agreeing a suitable sharing channel.
+The initial beta is free: each participant may submit one simple part with clearly dimensioned PDF/DXF input. A person reviews dimensions and confirms the scope before modeling; this is not an automatic converter for arbitrary photos or incomplete drawings. Paid plans may be introduced after usage and demand are established, with notice before any charges.
+
+To request a beta slot, email **zexuanzjb@gmail.com** with the drawing format, part count, intended use, required outputs, known open dimensions/tolerances, and target deadline. Attach drawings in the email; the website does not receive or store them.
 
 ## Credits and license
 
