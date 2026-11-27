@@ -39,7 +39,7 @@ const t = {
       ['插销 Ø10 × 48，头部 Ø16 × 3','圆边与轴向范围一致','一致'],
     ],
     videoEyebrow: '20-SECOND DEMO', videoTitle: '20 秒看完整个转换过程',
-    videoLead: '视频展示原始图纸、装配模型、三视图与检查结果。视频无配音，画面文字说明各步骤。',
+    videoLead: '视频展示原始图纸、装配模型、三视图与检查结果。视频无配音，画面文字说明各步骤。', demoVideo: '/assets/demo-zh.mp4',
     deliverEyebrow: 'DELIVERABLES', deliverTitle: '一套方便复核和继续使用的文件',
     deliverLead: '这里展示的是本样品实际生成的文件。客户项目按确认后的图纸和约定格式交付。',
     deliver: [
@@ -97,7 +97,7 @@ const t = {
       ['Pin Ø10 × 48; head Ø16 × 3','Circular edges and axial extents agree','MATCH'],
     ],
     videoEyebrow: '20-SECOND DEMO', videoTitle: 'See the transformation in 20 seconds',
-    videoLead: 'The silent video shows the source drawing, assembly, three views and check summary with on-screen labels.',
+    videoLead: 'The silent video shows the source drawing, assembly, three views and check summary with on-screen labels.', demoVideo: '/assets/demo-en.mp4',
     deliverEyebrow: 'DELIVERABLES', deliverTitle: 'Files ready to review and reuse',
     deliverLead: 'These files were generated for this sample. Client work follows the confirmed drawing and agreed formats.',
     deliver: [
@@ -150,7 +150,7 @@ const navIds = ['process','case-study','demo','deliverables','pilot'];
     <header class="site-header">
       <div class="shell header-inner">
         <a class="brand" href={home} aria-label={t.brand}>
-          <span class="brand-mark" aria-hidden="true"><span></span></span>
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><path d="M12 17v31h17M12 17h16M12 25h11M20 25v12h9" fill="none" stroke="#9bd0ef" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="42" r="2.6" fill="none" stroke="#f4a361" stroke-width="2"/><path d="m34 21 11-6 11 6v25l-11 6-11-6z" fill="#4e9bd1"/><path d="m34 21 11 6v25l-11-6z" fill="#79b7e0"/><path d="m45 27 11-6v25l-11 6z" fill="#3275a9"/><path d="m34 21 11 6 11-6" fill="none" stroke="#c4eaff" stroke-width="2" stroke-linejoin="round"/><path d="M39 34h14" stroke="#f4a361" stroke-width="4" stroke-linecap="round"/></svg></span>
           <span>{t.brand}</span>
         </a>
         <button class="menu-toggle" type="button" aria-label={isZh ? '打开菜单' : 'Open menu'} aria-expanded="false" aria-controls="site-nav">
@@ -240,8 +240,8 @@ const navIds = ['process','case-study','demo','deliverables','pilot'];
       </section>
 
       <section class="section shell video-section" id="demo" aria-labelledby="video-title">
-        <div class="video-copy"><span class="section-kicker">{t.videoEyebrow}</span><h2 id="video-title">{t.videoTitle}</h2><p>{t.videoLead}</p><a class="text-link" href="/assets/demo.mp4" download>{isZh ? '下载演示视频' : 'Download the demo'} <span aria-hidden="true">↗</span></a></div>
-        <div class="video-frame"><video controls playsinline preload="metadata" poster="/assets/video-poster.png" aria-label={t.videoTitle}><source src="/assets/demo.mp4" type="video/mp4" /></video></div>
+        <div class="video-copy"><span class="section-kicker">{t.videoEyebrow}</span><h2 id="video-title">{t.videoTitle}</h2><p>{t.videoLead}</p><a class="text-link" href={t.demoVideo} download>{isZh ? '下载演示视频' : 'Download the demo'} <span aria-hidden="true">↗</span></a></div>
+        <div class="video-frame"><video controls playsinline preload="metadata" poster="/assets/video-poster.png" aria-label={t.videoTitle}><source src={t.demoVideo} type="video/mp4" /></video></div>
       </section>
 
       <section class="section shell" id="deliverables" aria-labelledby="deliver-title">

@@ -9,7 +9,8 @@
 ## See the work
 
 - [Open the bilingual service site](https://drawing-to-cad-studio.zexuanzjb.chatgpt.site/) *(currently private preview; access may be limited)*
-- [Watch the 20-second conversion demo](site-public/assets/demo.mp4)
+- [Watch the English 20-second conversion demo](site-public/assets/demo-en.mp4)
+- [Watch the Chinese 20-second conversion demo](site-public/assets/demo-zh.mp4)
 - [Read the dimension comparison report](site-public/assets/comparison-report.pdf)
 - [Download the complete sample package](site-public/assets/sample-package.zip)
 - [View the original structured drawing (PDF)](site-public/assets/source-drawing.pdf)

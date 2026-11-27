@@ -12,10 +12,8 @@ img{max-width:100%;display:block}
 .site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);border-bottom:1px solid #dbe5ee;backdrop-filter:blur(16px)}
 .header-inner{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand{display:flex;align-items:center;gap:12px;font-size:19px;font-weight:800;white-space:nowrap;letter-spacing:-.025em}
-.brand-mark{width:40px;height:40px;border-radius:11px;background:#123b60;position:relative;display:inline-block;box-shadow:0 6px 18px rgba(18,59,96,.15)}
-.brand-mark:before{content:"";position:absolute;left:10px;top:9px;width:7px;height:23px;background:#90c4e5;border-radius:2px}
-.brand-mark:after{content:"";position:absolute;left:12px;bottom:8px;width:20px;height:7px;background:#90c4e5;border-radius:2px}
-.brand-mark span{position:absolute;left:20px;top:15px;width:17px;height:8px;background:#f5aa68;border-radius:4px;z-index:1}
+.brand-mark{width:40px;height:40px;border-radius:11px;background:#123b60;position:relative;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(18,59,96,.15);overflow:hidden}
+.brand-mark svg{display:block;width:40px;height:40px}
 .site-nav{display:flex;align-items:center;gap:27px;font-size:14px;font-weight:650;color:#415a70}
 .site-nav>a:not(.nav-cta):hover,.footer-links a:hover{color:#2471aa}
 .language-link{border-left:1px solid #d7e2ec;padding-left:22px}
